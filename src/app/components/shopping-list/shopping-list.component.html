@@ -1,0 +1,33 @@
+<div class="container-fluid">
+<form #shoppingListForm='ngForm'>
+  <div class="form-group row">
+    <div class="form-group col-md-4">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" class="form-control" [ngModel]="ingr.name" #name required>
+    </div>
+    <div class="form-group col-md-1">
+        <label for="quantity">Quantity</label>
+        <input  type="number" name="quantity" 
+                id="quantity" class="form-control" 
+                [ngModel]="ingr.quantity" #quantity required>
+    </div>
+  </div>
+</form>
+<button class="btn btn-success" *ngIf='updateMode' (click)='onUpdate(name.value,quantity.value)'>Update</button>
+<button class="btn btn-success" 
+        *ngIf='!updateMode' 
+        (click)='onAdd(name.value,quantity.value);shoppingListForm.reset()'
+        [disabled]='shoppingListForm.invalid'>Add</button>
+<button class="btn btn-danger" *ngIf='updateMode' (click)='onDelete()'>Delete</button>
+<button class="btn btn-primary" *ngIf='!updateMode' (click)='shoppingListForm.reset()' [disabled]='!name.value && !quantity.value'>
+  Clear
+</button>
+<button class="btn btn-primary" *ngIf='updateMode' (click)="this.ingr={name:'',quantity:null};updateMode=false">Cancel</button>
+<ul class="list-group">
+    <li class="list-group-item ingrlist" 
+        *ngFor='let ing of ingList' 
+        (click)='onSelect(ing)'>
+        {{ing.name}} ({{ing.quantity}})
+    </li>
+</ul>
+</div>

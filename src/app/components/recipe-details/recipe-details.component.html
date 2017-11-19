@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <img src="{{selectedRecipe.imgUrl}}" alt="alternate">
+  <h1>{{selectedRecipe.name}}</h1>
+  <p>{{selectedRecipe.description}}</p>
+  <button class="btn btn-success" (click)='toShoppingList()' routerLink='../../shoppinglist'>To Shopping List</button>
+  <button class="btn btn-primary" routerLink='editform'>Edit</button>
+  <button class="btn btn-danger" (click)='onDelete()' routerLink='default'>Delete</button>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor='let ing of selectedRecipe.ingredientArr'>
+      {{ing.name}} ({{ing.quantity}})
+    </li>
+  </ul>
+</div>

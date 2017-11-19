@@ -1,0 +1,11 @@
+<div class="container-fluid">
+<button class="btn btn-success" routerLink='newform'>Add Recipe</button>
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="queryString">
+</div><!-- /input-group -->
+<ul class="list-group">
+  <li class="list-group-item" *ngFor='let recipe of recipeArr|FilterPipe:queryString ;let i=index'>
+    <app-recipe-list-item [recipeData]='recipe' ></app-recipe-list-item>
+  </li>
+</ul>
+</div>
